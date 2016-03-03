@@ -1,5 +1,7 @@
 # PC shutdown app
 
+[![Build Status](https://travis-ci.org/nixilla/PCControl.svg?branch=master)](https://travis-ci.org/nixilla/PCControl)
+
 Exposes API to shutdown PC remotely. Very useful when you have kids.
 
 ## How it works?
