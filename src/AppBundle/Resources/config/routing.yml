@@ -1,0 +1,9 @@
+status:
+  path: /
+  defaults: { _controller: controller.default:indexAction }
+  methods: [ GET ]
+
+shutdown:
+  path: /
+  defaults: { _controller: controller.default:shutdownAction }
+  methods: [ POST ]

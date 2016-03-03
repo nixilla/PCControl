@@ -1,0 +1,7 @@
+parameters:
+    controller.default.class: AppBundle\Controller\DefaultController
+
+services:
+    controller.default:
+        class: "%controller.default.class%"
+        arguments: [ "@session" ]
