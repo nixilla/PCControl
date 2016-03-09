@@ -27,7 +27,7 @@ curl -v http://host:port
 < Date: Thu, 03 Mar 2016 14:23:26 GMT
 < 
 
-{"status":"running","token":"b47f6a56070038bc7c6d1411b21ff1bfc14cef8b26c534a0ea488c1bc44d1103"}
+{"status":"running","hostname":"ubuntu-14","boottime":"about 1 hour ago","token":"b47f6a56070038bc7c6d1411b21ff1bfc14cef8b26c534a0ea488c1bc44d1103"}
 
 curl -v http://host:port/ -X POST -H "Content-Type: application/json" \
 --data '{"token":"b47f6a56070038bc7c6d1411b21ff1bfc14cef8b26c534a0ea488c1bc44d1103"}' \

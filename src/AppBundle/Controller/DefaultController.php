@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\HostHelper;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,13 +13,18 @@ class DefaultController
     /** @var Session */
     private $session;
 
+    /** @var HostHelper */
+    private $hostHelper;
+
     /**
      * DefaultController constructor.
      * @param Session $session
+     * @param HostHelper $hostHelper
      */
-    public function __construct(Session $session)
+    public function __construct(Session $session, HostHelper $hostHelper)
     {
         $this->session = $session;
+        $this->hostHelper = $hostHelper;
     }
 
     public function indexAction()
@@ -28,6 +34,8 @@ class DefaultController
 
         return new JsonResponse([
             'status' => 'running',
+            'hostname' => gethostname(),
+            'boottime' => $this->hostHelper->getUptime(true),
             'token' => $this->session->get('token')
         ]);
     }
@@ -38,7 +46,7 @@ class DefaultController
 
         if($content['token'] && $content['token'] == $this->session->get('token'))
         {
-            shell_exec('sudo shutdown -h now');
+            $this->hostHelper->shutdown($areYouSure = true);
 
             return new JsonResponse(['status' => 'shutting down']);
         }

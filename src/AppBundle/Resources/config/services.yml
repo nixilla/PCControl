@@ -1,7 +1,19 @@
 parameters:
     controller.default.class: AppBundle\Controller\DefaultController
 
+    host.helper.class: AppBundle\Service\HostHelper
+
 services:
     controller.default:
         class: "%controller.default.class%"
-        arguments: [ "@session" ]
+        arguments: [ "@session", "@host.helper" ]
+
+    host.helper:
+        class: "%host.helper.class%"
+        arguments: [ "@salavert.twig.time_ago" ]
+
+    salavert.twig.time_ago:
+        class: Salavert\Twig\Extension\TimeAgoExtension
+        arguments: [ "@translator" ]
+        tags:
+            - { name: twig.extension }
